@@ -1,0 +1,234 @@
+/* Ümumi tərtibat */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('youtube-background1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden; 
+}
+
+header {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    top: 0; 
+    width: 100%;
+    z-index: 1000;
+}
+
+header, footer, main {
+    width: 100%; /* Max genişliyi 100% olaraq təyin edin */
+    box-sizing: border-box; /* Daxili boşluğu hesablamaq üçün */
+}
+
+nav {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+nav ul li a:hover {
+   color: #bf1818;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed; /* Sabit footer */
+    bottom: 0;
+    width: 100%;
+    z-index: 1000; /* Footer-in digər elementlərdən üstə gəlməsi üçün */
+}
+
+/* Video import səhifəsi */
+#video-import {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2); /* Şəffaf ağ arxa plan */
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input[type="text"], textarea {
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 1em;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #bf1818;
+}
+
+/* Video qalereya səhifəsi */
+#video-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 video hər satır */
+    gap: 20px;
+    padding: 10px;
+}
+
+.video-item {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(224, 6, 6, 0.2);
+    text-align: center;
+}
+
+.video-item video {
+    width: 100%;
+    border-bottom: 2px solid #bf0808;
+}
+
+.video-item h3 {
+    padding: 10px;
+    font-size: 1em;
+    color: #333;
+}
+
+/* Logo stilizasiyası */
+.logo {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.logo img {
+    width: 40px; /* İkonun genişliyi */
+    height: 40px; /* İkonun hündürlüyü */
+    margin-right: 20px;
+}
+
+.logo span {
+    font-size: 1em;
+    color: white;
+    font-weight: bold;
+}
+
+.notification {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    display: none; /* Başlanğıcda görünməz */
+}
+
+button#play-music {
+    background-color: #007BFF; /* Düymənin arxa fon rəngi */
+    color: white; /* Yazı rəngi */
+    border: none; /* Sərhəd */
+    padding: 10px 15px; /* Daxili boşluq */
+    border-radius: 5px; /* Künclərin yumşaldılması */
+    cursor: pointer; /* Kursora pointer simvolu */
+    position: absolute; /* Header içində yerləşdirmək üçün */
+    top: 10px; /* Üstdən məsafə */
+    right: 20px; /* Sağdan məsafə */
+}
+
+button#play-music:hover {
+    background-color: #0056b3; /* Hover zamanı rəng dəyişməsi */
+}
+
+/* Kiçik ekranlar üçün media sorğuları */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+    
+    .logo img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .logo {
+        top: 35px; /* Üst məsafəni azaldın */
+    }
+
+    nav ul li a {
+        font-size: 1em; /* Kiçik ekranlar üçün yazı ölçüsünü kiçildin */
+    }
+    
+    /* Video qalereya tərtibatı - hər sətirdə 2 video */
+    #video-gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 video hər satır */
+    }
+
+    .video-item {
+        width: 100%; /* Kartların daha yaxşı uyğunlaşması üçün tam genişlik */
+    }
+
+    button#play-music {
+        font-size: 0.8em; /* Yazı ölçüsünü azaldın */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo span {
+        font-size: 1em; /* Çox kiçik ekranlar üçün */
+    }
+
+    nav ul li {
+        margin: 5px;
+    }
+
+    nav ul li a {
+        font-size: 0.9em; /* Mobil ekran üçün daha kiçik yazı ölçüsü */
+    }
+
+    /* Mobil cihazlar üçün hər sətirdə 1 video */
+    #video-gallery {
+        grid-template-columns: 1fr; /* 1 video hər satır */
+    }
+}

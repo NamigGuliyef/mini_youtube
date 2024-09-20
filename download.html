@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Import</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="youtube-icon.png" alt="Mini YouTube">
+            <span>Mini YouTube</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="video.html">Ana Səhifə</a></li>
+                <li><a href="download.html">Download</a></li>
+            </ul>
+        </nav>
+        <br>
+        <h3>Video Import Section</h3>
+    </header>
+    <main>
+        <section id="video-import">
+            <h2>Upload a Video</h2>
+            <form id="upload-form">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                
+                <label for="youtube-link">YouTube Link:</label>
+                <input type="text" id="youtube-link" name="youtube-link" required>
+                
+                <button type="submit">Video əlavə et</button>
+            </form>
+            <div id="notification" style="display: none; color: green;"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Mini YouTube</p>
+    </footer>
+
+    <!-- JavaScript faylını  edin -->
+    <script src="video.js"></script>
+</body>
+</html>
