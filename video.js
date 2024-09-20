@@ -1,6 +1,6 @@
 // Videoları JSON serverdən götürmək və HTML-ə əlavə etmək üçün funksiya
 function displayVideos() {
-    fetch('http://localhost:3000/videos')
+    fetch('https://nihad-0buu.onrender.com/videos')
         .then(response => response.json())
         .then(videos => {
             const videoGallery = document.getElementById("video-gallery");
@@ -54,7 +54,7 @@ function addVideo(event) {
     const newVideo = { title, source: youtubeLink };
 
     // Yeni videonu JSON serverə POST etmək
-    fetch('http://localhost:3000/videos', {
+    fetch('https://nihad-0buu.onrender.com/videos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
