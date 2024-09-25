@@ -1,6 +1,6 @@
 // Videoları JSON serverdən götürmək və HTML-ə əlavə etmək üçün funksiya
 function displayVideos() {
-    fetch('https://nihad-0buu.onrender.com/videos')
+    fetch('https://minicocuk.vercel.app/videos')
         .then(response => response.json())
         .then(videos => {
             const videoGallery = document.getElementById("video-gallery");
@@ -54,7 +54,7 @@ function addVideo(event) {
     const newVideo = { title, source: youtubeLink };
 
     // Yeni videonu JSON serverə POST etmək
-    fetch('https://nihad-0buu.onrender.com/videos', {
+    fetch('https://minicocuk.vercel.app/videos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
