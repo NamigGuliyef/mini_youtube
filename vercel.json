@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "public": "./public",
   "routes": [
     {
       "src": "/(.*)",
@@ -8,3 +7,4 @@
     }
   ]
 }
+
