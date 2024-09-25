@@ -2,7 +2,8 @@ import dotenv from 'dotenv'
 dotenv.config()
 // Videoları JSON serverdən götürmək və HTML-ə əlavə etmək üçün funksiya
 function displayVideos() {
-    fetch(process.env.DB_JSON)
+    console.log(process.env.DB_JSON);
+    fetch(process.env.DB_JSON)    
         .then(response => response.json())
         .then(videos => {
             const videoGallery = document.getElementById("video-gallery");
