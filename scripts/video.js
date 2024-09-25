@@ -1,7 +1,7 @@
 // Videoları JSON serverdən götürmək və HTML-ə əlavə etmək üçün funksiya
 function displayVideos() {
 
-    fetch("/api/data")    
+    fetch("/api/data.js")    
         .then(response => response.json())
         .then(videos => {
             const videoGallery = document.getElementById("video-gallery");
@@ -55,7 +55,7 @@ function addVideo(event) {
     const newVideo = { title, source: youtubeLink };
 
     // Yeni videonu JSON serverə POST etmək
-    fetch("/api/data", {
+    fetch("/api/data.js", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
