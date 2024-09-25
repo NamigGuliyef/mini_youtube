@@ -5,6 +5,7 @@ export default async function handler(req, res) {
     const filePath = path.join(process.cwd(), 'db.json');
     const jsonData = await fs.readFile(filePath, 'utf8');
     const data = JSON.parse(jsonData);
+    console.log(data);
 
     if (req.method === 'GET') {
         // `GET` isteği: Tüm videoları döndür
