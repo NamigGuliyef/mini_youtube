@@ -1,6 +1,5 @@
 // Videoları JSON serverdən götürmək və HTML-ə əlavə etmək üçün funksiya
 function displayVideos() {
-
     fetch("/api/data.js")
         .then(response => response.json())
         .then(videos => {
@@ -78,27 +77,9 @@ function addVideo(event) {
     event.target.reset();
 }
 
-// Sayfa yükləndiğinde videoları göstərmək
+// Səhifə yükləndikdə videoları göstərmək
 window.addEventListener('load', displayVideos);
 
-// Sayfa yüklendikten sonra müzik çalma fonksiyonunu ekle
-window.onload = function() {
-    const playButton = document.getElementById('play-music');
-    const musicElement = document.getElementById('background-music');
+// Form göndərilməsini dinləyin
+document.getElementById('upload-form').addEventListener('submit', addVideo);
 
-    // Eğer play-music butonu ya da music elementleri bulunamazsa, hata oluşmaması için kontrol et
-    if (playButton && musicElement) {
-        playButton.addEventListener('click', function() {
-            musicElement.volume = 1; // Müziğin ses seviyesini ayarla
-            musicElement.play().catch(function(error) {
-                console.log("Müzik çalmadı, kullanıcı etkileşimi gerekli.");
-            });
-            console.log('Müzik çalıyor');
-        });
-    } else {
-        console.error('play-music butonu veya background-music elementi bulunamadı.');
-    }
-};
-
-
-console.log('test');
