@@ -1,7 +1,7 @@
 // Videoları JSON serverdən götürmək və HTML-ə əlavə etmək üçün funksiya
 function displayVideos() {
 
-    fetch("/api/data.js")    
+    fetch("/api/data.js")
         .then(response => response.json())
         .then(videos => {
             const videoGallery = document.getElementById("video-gallery");
@@ -78,20 +78,19 @@ function addVideo(event) {
     event.target.reset();
 }
 
-// Səhifə yükləndikdə videoları göstərmək
+// Sayfa yükləndiğinde videoları göstərmək
 window.addEventListener('load', displayVideos);
 
-// // Form göndərilməsini dinləyin
-// document.getElementById('upload-form').addEventListener('submit', addVideo);
+// Müziği çalmaq üçün tıklama olayını dinlemek
+window.onload = function() {
+    document.getElementById('play-music').addEventListener('click', function() {
+        var music = document.getElementById('background-music');
+        music.volume = 1; // Müziğin ses seviyesini ayarlamak
+        music.play().catch(function(error) {
+            console.log("Müzik çalmadı, kullanıcı etkileşimi gerekli.");
+        });
+        console.log('Müzik çalıyor');
+    });
+};
 
 console.log('test');
-
-document.getElementById('play-music').addEventListener('click', function() {
-    var music = document.getElementById('background-music');
-    music.volume = 1; // Musiqi səviyyəsini tənzimləmək
-    music.play().catch(function(error) {
-        console.log("Musiqi səslənmədi, istifadəçi hərəkəti tələb olunur.");
-    });
-    console.log('test2');
-    
-});
