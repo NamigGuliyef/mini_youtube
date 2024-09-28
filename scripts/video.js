@@ -81,16 +81,24 @@ function addVideo(event) {
 // Sayfa yükləndiğinde videoları göstərmək
 window.addEventListener('load', displayVideos);
 
-// Müziği çalmaq üçün tıklama olayını dinlemek
+// Sayfa yüklendikten sonra müzik çalma fonksiyonunu ekle
 window.onload = function() {
-    document.getElementById('play-music').addEventListener('click', function() {
-        var music = document.getElementById('background-music');
-        music.volume = 1; // Müziğin ses seviyesini ayarlamak
-        music.play().catch(function(error) {
-            console.log("Müzik çalmadı, kullanıcı etkileşimi gerekli.");
+    const playButton = document.getElementById('play-music');
+    const musicElement = document.getElementById('background-music');
+
+    // Eğer play-music butonu ya da music elementleri bulunamazsa, hata oluşmaması için kontrol et
+    if (playButton && musicElement) {
+        playButton.addEventListener('click', function() {
+            musicElement.volume = 1; // Müziğin ses seviyesini ayarla
+            musicElement.play().catch(function(error) {
+                console.log("Müzik çalmadı, kullanıcı etkileşimi gerekli.");
+            });
+            console.log('Müzik çalıyor');
         });
-        console.log('Müzik çalıyor');
-    });
+    } else {
+        console.error('play-music butonu veya background-music elementi bulunamadı.');
+    }
 };
+
 
 console.log('test');
