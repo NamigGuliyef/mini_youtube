@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.urlencoded())
 app.use(express.static('public'))
-app.use(cors())
+app.use(cors({ origin: ["http://localhost:9099", "https://minicocuk.vercel.app"] }));
 
 
 app.get('/', (req, res) => {
