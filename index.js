@@ -14,6 +14,8 @@ app.use(bodyParser.json())
 app.use(express.urlencoded())
 app.use(express.static('public'))
 app.use(cors())
+
+
 app.get('/', (req, res) => {
   res.sendFile(path.resolve('./index.html'))
 })
@@ -24,7 +26,7 @@ app.get('/download', (req, res) => {
 })
 
 
-app.get('/videos', async (req, res) => {
+app.get('/api/videos', async (req, res) => {
   const data = await videoModel.find()
   console.log(data);
   return res.status(200).send(data)
