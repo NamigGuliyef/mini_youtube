@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Gallery</title>
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
+
 <body>
     <header>
         <div class="logo">
-            <img src="./public/youtube-icon.png" alt="Mini YouTube">
+            <img src="./youtube-icon.png" alt="Mini YouTube">
             <span>Mini YouTube</span>
         </div>
         <nav>
             <ul>
-                <li><a href="./index.html">Ana Səhifə</a></li>
-                <li><a href="./download.html">Download</a></li>
+                <li><a href="./">Ana Səhifə</a></li>
+                <li><a href="./download">Download</a></li>
             </ul>
         </nav>
-        <button id="play-music">Musiqi Başlat</button> <!-- Düymə əlavə edildi -->
+        <button id="play-music">Musiqi Başlat</button>
         <br>
         <h3>Youtube videos</h3>
     </header>
@@ -35,11 +37,72 @@
 
     <!-- Arxa fon musiqisi -->
     <audio id="background-music" loop>
-        <source src="./public/Usaq_mahnisi.mp3" type="audio/mpeg">
+        <source src="./Usaq_mahnisi.mp3" type="audio/mpeg">
         Sizin brauzeriniz audio faylları dəstəkləmir.
     </audio>
 
-    <!-- JavaScript faylını buraya əlavə edin -->
-    <script src="./scripts/video.js"></script>
+    <!-- JavaScript faylı buraya əlavə edirik -->
+    <script>
+        // Sayt yükləndikdən sonra videoları gətir
+        document.addEventListener('DOMContentLoaded', () => {
+            async function fetchVideos() {
+                try {
+                    const response = await fetch('/videos'); // Videoları alırıq
+                    const videos = await response.json(); // JSON-a çeviririk
+
+                    const videoGallery = document.getElementById('video-gallery');
+                    videoGallery.innerHTML = ''; // Hər dəfə təmizləyirik
+
+                    videos.forEach(video => {
+                        const videoElement = document.createElement('div');
+                        videoElement.classList.add('video-item');
+
+                        // Embed link yaratmaq üçün
+                        const embedLink = video.source.replace('watch?v=', 'embed/');
+
+                        videoElement.innerHTML = `
+                            <iframe width="100%" height="250" src="${embedLink}" frameborder="0" allowfullscreen=true></iframe>
+                            <h4>${video.title}</h4>
+                            <button class="delete-btn" data-id="${video._id}">🗑️ Sil</button>
+                        `;
+
+                        videoGallery.appendChild(videoElement);
+                    });
+
+                    // "Sil" düyməsi üçün event listener əlavə edirik
+                    document.querySelectorAll('.delete-btn').forEach(button => {
+                        button.addEventListener('click', async function () {
+                            const videoId = this.getAttribute('data-id');
+                            await deleteVideo(videoId); // Videonu silən funksiyanı çağırırıq
+                        });
+                    });
+
+                } catch (err) {
+                    console.error('Videoları əldə etməkdə problem yaşandı:', err);
+                }
+            }
+
+            // Videonu backend-dən silmək üçün funksiya
+            async function deleteVideo(videoId) {
+                try {
+                    const response = await fetch(`/videos/${videoId}`, {
+                        method: 'DELETE',
+                    });
+                    if (response.ok) {
+                        alert('Video uğurla silindi.');
+                        fetchVideos(); // Videoları yenidən yükləyirik
+                    } else {
+                        alert('Videonu silməkdə problem yaşandı.');
+                    }
+                } catch (err) {
+                    console.error('Videonu silməkdə problem yaşandı:', err);
+                }
+            }
+
+            // İlk yüklənmə zamanı videoları alırıq
+            fetchVideos();
+        });
+    </script>
 </body>
+
 </html>

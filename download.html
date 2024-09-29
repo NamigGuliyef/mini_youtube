@@ -9,13 +9,13 @@
 <body>
     <header>
         <div class="logo">
-            <img src="./public/youtube-icon.png" alt="Mini YouTube">
+            <img src="./youtube-icon.png" alt="Mini YouTube">
             <span>Mini YouTube</span>
         </div>
         <nav>
             <ul>
-                <li><a href="./index.html">Ana Səhifə</a></li>
-                <li><a href="./download.html">Download</a></li>
+                <li><a href="./">Ana Səhifə</a></li>
+                <li><a href="./download">Download</a></li>
             </ul>
         </nav>
         <br>
@@ -24,22 +24,25 @@
     <main>
         <section id="video-import">
             <h2>Upload a Video</h2>
-            <form id="upload-form">
+            
+            <!-- Yeni Form -->
+            <form action="/download" class="form" data-form method="post">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" required>
                 
                 <label for="youtube-link">YouTube Link:</label>
-                <input type="text" id="youtube-link" name="youtube-link" required>
+                <input type="text" id="source" name="source" required>
                 
                 <button type="submit">Video əlavə et</button>
             </form>
+            
             <div id="notification" style="display: none; color: green;"></div>
         </section>
 
         <!-- Yeni Ses Oynatma Butonu ve Ses -->
         <section id="audio-section">
             <button id="play-music">Musiqi Çal</button>
-            <audio id="background-music" src="./public/Usaq_mahnisi.mp3"></audio> <!-- Musiqi faylının düzgün bir yolunu yazın -->
+            <audio id="background-music" src="./Usaq_mahnisi.mp3"></audio>
         </section>
     </main>
     <footer>
@@ -47,6 +50,6 @@
     </footer>
 
     <!-- JavaScript faylını  edin -->
-    <script src="./scripts/video.js"></script>
+    <!-- <script src="./scripts/video.js"></script> -->
 </body>
 </html>
