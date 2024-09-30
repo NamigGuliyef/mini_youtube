@@ -6,9 +6,21 @@
     "use": "@vercel/node" 
   },
   {
-    "src": "public/**/**",
-    "use": "@vercel/static"
-  }
+      "src": "public/**/**",
+      "use": "@vercel/static"
+  },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "styles/**/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "download.html",
+      "use": "@vercel/static"
+    }
 ], 
   
   "routes":[ 
