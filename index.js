@@ -26,7 +26,7 @@ app.get('/download', (req, res) => {
 })
 
 
-app.get('/videos', async (req, res) => {
+app.get('/api/videos', async (req, res) => {
   const data = await videoModel.find()
   console.log(data);
   return res.status(200).send(data)
@@ -41,7 +41,7 @@ app.post('/download', async (req, res) => {
 })
 
 
-app.delete('/videos/:_id', async (req, res) => {
+app.delete('/api/videos/:_id', async (req, res) => {
   const { _id } = req.params
   await videoModel.findByIdAndDelete(_id)
   return res.sendFile(path.resolve('./index.html'))

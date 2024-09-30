@@ -37,65 +37,66 @@
 
     <!-- JavaScript faylı buraya əlavə edirik -->
     <script>
-        // Sayt yükləndikdən sonra videoları gətir
-        document.addEventListener('DOMContentLoaded', () => {
-            async function fetchVideos() {
-                try {
-                    const response = await fetch('/videos'); // Videoları alırıq
-                    const videos = await response.json(); // JSON-a çeviririk
+    // Sayt yükləndikdən sonra videoları gətir
+document.addEventListener('DOMContentLoaded', () => {
+    async function fetchVideos() {
+        try {
+            const response = await fetch('/api/videos'); // Videoları alırıq
+            const videos = await response.json(); // JSON-a çeviririk
 
-                    const videoGallery = document.getElementById('video-gallery');
-                    videoGallery.innerHTML = ''; // Hər dəfə təmizləyirik
+            const videoGallery = document.getElementById('video-gallery');
+            videoGallery.innerHTML = ''; // Hər dəfə təmizləyirik
 
-                    videos.forEach(video => {
-                        const videoElement = document.createElement('div');
-                        videoElement.classList.add('video-item');
+            videos.forEach(video => {
+                const videoElement = document.createElement('div');
+                videoElement.classList.add('video-item');
 
-                        // Embed link yaratmaq üçün
-                        const embedLink = video.source.replace('watch?v=', 'embed/');
+                // Embed link yaratmaq üçün
+                const embedLink = video.source.replace('watch?v=', 'embed/');
 
-                        videoElement.innerHTML = `
-                            <iframe width="100%" height="250" src="${embedLink}" frameborder="0" allowfullscreen=true></iframe>
-                            <h4>${video.title}</h4>
-                            <button class="delete-btn" data-id="${video._id}">🗑️ Sil</button>
-                        `;
+                videoElement.innerHTML = `
+                    <iframe width="100%" height="250" src="${embedLink}" frameborder="0" allowfullscreen=true></iframe>
+                    <h4>${video.title}</h4>
+                    <button class="delete-btn" data-id="${video._id}">🗑️ Sil</button>
+                `;
 
-                        videoGallery.appendChild(videoElement);
-                    });
+                videoGallery.appendChild(videoElement);
+            });
 
-                    // "Sil" düyməsi üçün event listener əlavə edirik
-                    document.querySelectorAll('.delete-btn').forEach(button => {
-                        button.addEventListener('click', async function () {
-                            const videoId = this.getAttribute('data-id');
-                            await deleteVideo(videoId); // Videonu silən funksiyanı çağırırıq
-                        });
-                    });
+            // "Sil" düyməsi üçün event listener əlavə edirik
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', async function () {
+                    const videoId = this.getAttribute('data-id');
+                    await deleteVideo(videoId); // Videonu silən funksiyanı çağırırıq
+                });
+            });
 
-                } catch (err) {
-                    console.error('Videoları əldə etməkdə problem yaşandı:', err);
-                }
+        } catch (err) {
+            console.error('Videoları əldə etməkdə problem yaşandı:', err);
+        }
+    }
+
+    // Videonu backend-dən silmək üçün funksiya
+    async function deleteVideo(videoId) {
+        try {
+            const response = await fetch(`/api/videos/${videoId}`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                alert('Video uğurla silindi.');
+                fetchVideos(); // Videoları yenidən yükləyirik
+            } else {
+                alert('Videonu silməkdə problem yaşandı.');
             }
+        } catch (err) {
+            console.error('Videonu silməkdə problem yaşandı:', err);
+        }
+    }
 
-            // Videonu backend-dən silmək üçün funksiya
-            async function deleteVideo(videoId) {
-                try {
-                    const response = await fetch(`/videos/${videoId}`, {
-                        method: 'DELETE',
-                    });
-                    if (response.ok) {
-                        alert('Video uğurla silindi.');
-                        fetchVideos(); // Videoları yenidən yükləyirik
-                    } else {
-                        alert('Videonu silməkdə problem yaşandı.');
-                    }
-                } catch (err) {
-                    console.error('Videonu silməkdə problem yaşandı:', err);
-                }
-            }
+    // İlk yüklənmə zamanı videoları alırıq
+    fetchVideos();
+});
 
-            // İlk yüklənmə zamanı videoları alırıq
-            fetchVideos();
-        });
     </script>
 </body>
 
