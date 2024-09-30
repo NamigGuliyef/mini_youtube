@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { connect } from 'mongoose'
 import cors from 'cors'
-import { videoModel } from './videomodel.js'
+import { videoModel } from '../videomodel.js'
 import path from 'path'
 import bodyParser from 'body-parser'
 const app = express()
