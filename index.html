@@ -41,7 +41,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             async function fetchVideos() {
                 try {
-                    const response = await fetch('/api/videos'); // Videoları alırıq
+                    const response = await fetch('/videos'); // Videoları alırıq
                     const videos = await response.json(); // JSON-a çeviririk
 
                     const videoGallery = document.getElementById('video-gallery');

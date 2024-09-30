@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { connect } from 'mongoose'
 import cors from 'cors'
-import { videoModel } from '../videomodel.js'
+import { videoModel } from './videomodel.js'
 import path from 'path'
 import bodyParser from 'body-parser'
 const app = express()
@@ -26,7 +26,7 @@ app.get('/download', (req, res) => {
 })
 
 
-app.get('/api/videos', async (req, res) => {
+app.get('/videos', async (req, res) => {
   const data = await videoModel.find()
   console.log(data);
   return res.status(200).send(data)
