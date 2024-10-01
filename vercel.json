@@ -18,6 +18,11 @@
     {
       "src": "/(.*)",
       "dest": "/public/$1"
+    },
+    {
+      "src": "/downloadvideo",
+      "dest": "/index.js"
     }
+
   ]
 }
