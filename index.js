@@ -40,7 +40,7 @@ app.get('/api/videos', async (req, res) => {
 });
 
 // Video yükleme işlemi
-app.post('/downloadvideo', async (req, res) => {
+app.post('/api/downloadvideo', async (req, res) => {
   const { title, source } = req.body;
   if (!title || !source) {
     return res.status(400).send({ success: false, error: 'Title and source are required.' });
