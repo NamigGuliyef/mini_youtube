@@ -68,8 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.addEventListener('click', async function () {
                     const videoId = this.getAttribute('data-id');
                     await deleteVideo(videoId); // Videonu silən funksiyanı çağırırıq
+                    console.log("Video uğurla əlavə olundu.");
                 });
-                console.log("Video uğurla əlavə olundu.");
             });
 
         } catch (err) {
